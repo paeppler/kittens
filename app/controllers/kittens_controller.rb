@@ -1,10 +1,20 @@
 class KittensController < ApplicationController
   def index
     @kittens = Kitten.all
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @kittens}
+    end
   end
 
   def show
     @kitten = Kitten.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @kitten }
+    end
   end
 
   def new
@@ -25,20 +35,11 @@ class KittensController < ApplicationController
   end
 
   def update
-    # if @movie.update(movie_params)
-    #   redirect_to @movie, notice: "Task failed successfully!"
-    # else    
-    #   render :edit, status: :unprocessable_entity
-    # end
-
-    @kitten = Kitten.find(params[:id])
     if @kitten.update(kitten_params)
-      # flash[:notice] = "Kitten updated!"
       redirect_to kittens_path, notice: "Task failed successfully!"
     else 
       render :edit, status: :unprocessable_entity
-    end
-    
+    end    
   end
 
   def destroy
@@ -48,7 +49,6 @@ class KittensController < ApplicationController
 
     redirect_to kittens_path
   end
-
 
   private
 
