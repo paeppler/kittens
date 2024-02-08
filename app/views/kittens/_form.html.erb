@@ -1,0 +1,25 @@
+<%= form_with(model: kitten) do |f| %>
+  <%= render "errors", object: kitten %>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :age %>
+    <%= f.select :age, 1..25 %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :cuteness %>
+    <%= f.select :cuteness, 1..10 %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :softness %>
+    <%= f.select :softness, 1..10 %>
+  </div>
+  <br>
+  <%= f.submit %>
+<% end %>
